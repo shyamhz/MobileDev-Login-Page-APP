@@ -1,98 +1,170 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {
+  Text,
+  Image,
+  View,
+  StyleSheet,
+  TextInput,
+  Pressable,
+  StatusBar,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
-
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
+const accentColour = "#85CC17";
+export default function Index() {
   return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
+    <SafeAreaView style={styles.root}>
+      <StatusBar barStyle={"dark-content"} />
+      <Image
+        source={require("@/assets/images/MainLogo.png")}
+        style={{
+          height: 60,
+          width: 60,
+          marginBottom: 40,
+        }}
+      />
 
-export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
+      <View>
+        <Text style={styles.h1}>Sign In</Text>
+        <Text>Let's Enjoy the jou of telecare AI</Text>
+      </View>
 
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
-
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
+      <View style={styles.formContent}>
+        <Text style={styles.label}>Email Address</Text>
+        <View style={styles.inputContainer}>
+          <Image
+            source={require("@/assets/images/MailIcon.png")}
+            style={{
+              height: 20,
+              width: 20,
+              alignSelf: "center",
+              marginRight: 10,
+            }}
           />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
+          <TextInput placeholder="Email address" />
+        </View>
 
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+        <Text style={styles.label}>Password</Text>
+        <View style={styles.inputContainer}>
+          <Image
+            source={require("@/assets/images/Lock.png")}
+            style={{
+              height: 20,
+              width: 20,
+              alignSelf: "center",
+              marginRight: 10,
+            }}
+          />
+          <TextInput placeholder="Email address" />
+        </View>
+
+        <Pressable style={styles.submitButton}>
+          <Text style={styles.buttonText}>Sign In</Text>
+          <Image
+            source={require("@/assets/images/Arrow.png")}
+            style={{
+              height: 40,
+              width: 40,
+              alignSelf: "center",
+            }}
+          />
+        </Pressable>
+      </View>
+
+      <Image
+        source={require("@/assets/images/social_icons.jpg")}
+        style={{
+          marginBottom: 40,
+        }}
+      />
+
+      <Text
+        style={{
+          fontWeight: "semibold",
+          marginBottom: 20,
+        }}
+      >
+        Don't have an account?{"   "}
+        <Text
+          style={{
+            color: accentColour,
+          }}
+        >
+          Sign Up
+        </Text>
+      </Text>
+      <Text
+        style={{
+          color: accentColour,
+          textDecorationLine: "underline",
+        }}
+      >
+        Forgot your password?
+      </Text>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: "#f6f7f7",
+    alignItems: "center",
+    padding: 30,
+  },
   container: {
+    width: "100%",
+    borderRadius: 10,
+    backgroundColor: "container",
+    elevation: 4,
+    padding: 10,
+  },
+  logo: {
     flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
+    height: 50,
+    width: 50,
+    justifyContent: "center",
+    alignContent: "center",
   },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
+  h1: {
+    textAlign: "center",
+    fontSize: 24,
+    fontWeight: "bold",
   },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+  label: {
+    fontWeight: "bold",
+    marginBottom: 2,
   },
-  title: {
-    textAlign: 'center',
+  formContent: {
+    width: "100%",
+    justifyContent: "flex-start",
+    marginTop: 100,
   },
-  code: {
-    textTransform: 'uppercase',
+  inputContainer: {
+    width: "100%",
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    alignContent: "center",
+    backgroundColor: "#ffffff",
+    borderRadius: 16,
+    elevation: 6,
+    marginTop: 6,
+    marginBottom: 24,
+    padding: 15,
   },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+  submitButton: {
+    flexDirection: "row",
+    backgroundColor: accentColour,
+    padding: 15,
+    borderRadius: 18,
+    justifyContent: "center",
+    alignContent: "center",
+    color: "#ffffff",
+    marginBottom: 60,
+  },
+  buttonText: {
+    alignContent: "center",
+    padding: 10,
+    fontWeight: "bold",
+    color: "#ffffff",
   },
 });
