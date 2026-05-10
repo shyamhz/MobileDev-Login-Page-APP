@@ -2,6 +2,10 @@
 
 A modern mobile login application built with React Native and Expo.
 
+## Screenshots
+
+![Login Page](./screenshot.png)
+
 ## Tech Stack
 
 - **React Native** - Cross-platform mobile development
