@@ -10,15 +10,11 @@ A modern mobile login application built with React Native and Expo.
 
 - **React Native** - Cross-platform mobile development
 - **Expo** - Development framework and build service
-- **Expo Router** - File-based navigation
 - **TypeScript** - Type-safe development
-- **React Navigation** - Native navigation
 
 ## Prerequisites
 
-- Node.js 18+ and npm/yarn
-- [Expo CLI](https://docs.expo.dev/get-started/installation/)
-- Android Studio or Xcode (for native development)
+- Node.js 18+ and npm
 
 ## Installation
 
